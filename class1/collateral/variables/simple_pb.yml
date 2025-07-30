@@ -1,0 +1,23 @@
+---
+- name: Print out variables
+  hosts: cisco5
+  gather_facts: False
+  vars:
+    dns1: 8.8.8.8
+    dns2: 8.8.4.4
+  vars_files:
+    - my_vars.yml
+  tasks:
+    - name: Gather Facts from IOS (with register) 
+      cisco.ios.ios_facts:
+        gather_subset: all
+      register: output
+
+    - name: Debug register output
+      ansible.builtin.debug:
+        msg: "{{ output }}"
+
+    #- name: Debug an ansible_fact from cisco5
+    #  ansible.builtin.debug:
+        # msg: "{{ ansible_net_serialnum }}"
+    #    var: ansible_net_version

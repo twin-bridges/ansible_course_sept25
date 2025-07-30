@@ -1,0 +1,21 @@
+---
+- name: Print out variables
+  hosts: cisco5
+  gather_facts: False
+  vars:
+    dns1: 8.8.8.8
+    dns2: 8.8.4.4
+  vars_files:
+    - my_vars.yml
+  tasks:
+    - name: Debuggiing...
+      ansible.builtin.debug:
+        msg: "{{ ip_addr1 }}"
+
+    - name: Var from inventory
+      ansible.builtin.debug:
+        msg: "{{ ansible_host }}"
+
+    - name: Var from inventory
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}"
