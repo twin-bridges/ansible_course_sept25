@@ -1,0 +1,6 @@
+# .ansible-lint.yml
+kinds:
+  - playbook: "**/*_pb*.yml"
+
+skip_list:
+  - name[missing]
