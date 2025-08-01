@@ -1,0 +1,3 @@
+# .ansible-lint.yml
+skip_list:
+  - name[missing]
