@@ -1,0 +1,5 @@
+---
+- name: Simple Playbook
+  hosts: local
+  tasks:
+    - ansible.builtin.ping:
