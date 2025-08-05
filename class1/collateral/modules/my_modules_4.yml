@@ -1,8 +1,6 @@
 ---
 - name: Simple Playbook
   hosts: servers
-  become: true
-  become_method: ansible.builtin.sudo
   vars:
     user: candor
     virtualenv: "/home/{{ user }}/VENV/test_venv"
@@ -18,3 +16,5 @@
         name: netmiko
         version: 4.6.0
         virtualenv: "{{ virtualenv }}"
+      become: true
+      become_user: "{{ user }}"
