@@ -1,2 +1,7 @@
 ---
-['rtr1', 701, 3356, '10.1.1.100', '192.168.200.17']
+rtr1:
+  host: cisco1.lasthop.io
+  username: pyclass
+  password: somepass
+  device_type: cisco_ios
+  use_session_log: False
