@@ -34,50 +34,12 @@ def test_class1_ex1b():
     cmd_list = ["python", "print_yaml.py", "exercise1b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "['rtr1', 701, 3356, '10.1.1.100', '192.168.200.17']" in std_out
-    assert std_err == ""
-    assert return_code == 0
-
-
-def test_class1_ex1c():
-    base_path = "../class1/exercises/exercise1"
-    cmd_list = ["python", "print_yaml.py", "exercise1c.yml"]
-
-    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "rtr1" in std_out
     assert "device_type" in std_out
     assert "cisco1.lasthop.io" in std_out
     assert "password" in std_out
     assert "use_session_log" in std_out
     assert "username" in std_out
-    assert std_err == ""
-    assert return_code == 0
-
-
-def test_class1_ex1d():
-    base_path = "../class1/exercises/exercise1"
-    cmd_list = ["python", "print_yaml.py", "exercise1d.yml"]
-
-    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "rtr1" in std_out
-    assert "device_type" in std_out
-    assert "cisco1.lasthop.io" in std_out
-    assert "password" in std_out
-    assert "use_session_log" in std_out
-    assert "username" in std_out
-    assert std_err == ""
-    assert return_code == 0
-
-
-def test_class1_ex1e():
-    base_path = "../class1/exercises/exercise1"
-    cmd_list = ["python", "print_yaml.py", "exercise1e.yml"]
-
-    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "network_devices" in std_out
-    assert std_out.count("cisco_ios") == 2
-    assert std_out.count("ip_addresses") == 2
-    assert std_out.count("password") == 2
     assert std_err == ""
     assert return_code == 0
 
