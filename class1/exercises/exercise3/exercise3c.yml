@@ -1,0 +1,17 @@
+---
+- name: Exercise 3c
+  hosts: localhost
+  gather_facts: False
+  tasks:
+    - ansible.builtin.debug:
+        var: ansible_host
+
+- name: Exercise 3c - Another Play
+  hosts: cisco
+  gather_facts: False
+  tasks:
+    - ansible.builtin.debug:
+        var: ansible_connection
+
+    - ansible.builtin.debug:
+        var: ansible_host
