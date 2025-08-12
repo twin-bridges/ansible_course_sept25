@@ -1,0 +1,14 @@
+---
+- name: Exercise 4a
+  hosts: arista5
+  gather_facts: True
+  gather_subset: all
+
+  tasks:
+    - name: Print arista5 ansible_facts
+      ansible.builtin.debug:
+        var: ansible_facts
+
+    - name: Print arista5 net_all_ipv4_addresses
+      ansible.builtin.debug:
+        var: ansible_facts.net_all_ipv4_addresses
