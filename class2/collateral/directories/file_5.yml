@@ -1,0 +1,19 @@
+---
+- name: Testing 'file' module (become)
+  hosts: servers
+  become: True
+  become_method: sudo
+  vars:
+    user: ktbyers
+    mode: '0700'
+  tasks:
+    - name: Ensure directories exists
+      ansible.builtin.file:
+        path: "/home/{{ user }}/{{ item }}"
+        state: directory
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: "{{ mode }}"
+      loop:
+        - WORK
+        - WORK/tmp

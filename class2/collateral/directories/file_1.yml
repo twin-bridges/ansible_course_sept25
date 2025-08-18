@@ -1,0 +1,9 @@
+---
+- name: Testing 'file' module
+  hosts: local
+  tasks:
+    - name: Ensure directory exists
+      ansible.builtin.file:
+        path: /home/kbyers/WORK/tmp
+        state: directory
+        mode: '0755'

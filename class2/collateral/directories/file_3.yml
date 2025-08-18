@@ -1,0 +1,21 @@
+---
+- name: Testing 'file' module (become)
+  hosts: servers
+  become: True
+  become_method: sudo
+  tasks:
+    - name: Ensure directory 'WORK' exists
+      ansible.builtin.file:
+        path: "/home/ktbyers/WORK/"
+        state: directory
+        owner: ktbyers
+        group: ktbyers
+        mode: '0700'
+
+    - name: Ensure directory 'WORK/tmp' exists
+      ansible.builtin.file:
+        path: "/home/ktbyers/WORK/tmp"
+        state: directory
+        owner: ktbyers
+        group: ktbyers
+        mode: '0700'
