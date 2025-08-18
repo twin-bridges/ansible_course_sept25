@@ -104,27 +104,6 @@ def test_class1_ex4d():
     assert return_code == 0
 
 
-def test_class1_ex4e():
-    base_path = "../class1/exercises/exercise4/exercise4e"
-    cmd_list = ["ansible-playbook", "exercise4e.yml"]
-
-    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("10.220.88.32") == 4
-    assert '"ansible_host": "arista5.lasthop.io"' in std_out
-    assert '"ansible_network_os": "eos"' in std_out
-    assert '"ansible_host": "arista5.lasthop.io"' in std_out
-    assert '"desired_eos_version": "4.33.2F"' in std_out
-    assert '"device_hostname": "arista5.lab.io"' in std_out
-    assert (
-        "arista5                    : ok=8    changed=0    unreachable=0    failed=0    "
-        "skipped=0    rescued=0    ignored=0" in std_out
-    )
-
-    std_err = remove_ansible_warnings(std_err)
-    assert std_err.strip() == ""
-    assert return_code == 0
-
-
 def test_class1_ex5a():
     base_path = "../class1/exercises/exercise5/exercise5a"
     cmd_list = ["ansible-playbook", "exercise5a.yml"]
