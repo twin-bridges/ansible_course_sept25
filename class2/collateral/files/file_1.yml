@@ -1,7 +1,7 @@
 - name: Testing 'file' module (become)
   hosts: servers
-  become: True
-  become_method: sudo
+  become: true
+  become_method: ansible.builtin.sudo
   tasks:
     - name: Create an empty file
       ansible.builtin.file:

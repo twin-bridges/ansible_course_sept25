@@ -1,19 +1,19 @@
 ---
 - name: Testing 'file' module
   hosts: servers
-  gather_facts: True
+  gather_facts: true
   tasks:
     - name: Print $HOME
       ansible.builtin.debug:
         msg: "{{ ansible_env.HOME }}"
-  
-    - name: Ensure directory exists
+
+    - name: Ensure WORK directory exists
       ansible.builtin.file:
         path: "{{ ansible_env.HOME }}/WORK/"
         state: directory
         mode: '0700'
 
-    - name: Ensure directory exists
+    - name: Ensure WORK/tmp directory exists
       ansible.builtin.file:
         path: "{{ ansible_env.HOME }}/WORK/tmp"
         state: directory
