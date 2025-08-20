@@ -1,0 +1,14 @@
+- name: Testing 'file' module (become)
+  hosts: servers
+  become: True
+  become_method: sudo
+  tasks:
+    - name: Create a Python script
+      ansible.builtin.copy:
+        content: |
+          #!/usr/bin/env python3
+          print("Hello world")
+        dest: /home/ktbyers/WORK/my_script.py
+        owner: ktbyers
+        group: ktbyers
+        mode: '0755'

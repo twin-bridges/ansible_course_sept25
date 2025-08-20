@@ -1,0 +1,12 @@
+- name: Testing 'file' module (become)
+  hosts: servers
+  become: True
+  become_method: sudo
+  tasks:
+    - name: Create an empty file
+      ansible.builtin.file:
+        path: /home/ktbyers/WORK/my_file.txt
+        state: touch
+        owner: ktbyers
+        group: ktbyers
+        mode: '0644'

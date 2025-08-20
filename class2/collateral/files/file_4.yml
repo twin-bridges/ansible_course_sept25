@@ -1,0 +1,12 @@
+- name: Testing 'file' module (become)
+  hosts: servers
+  become: True
+  become_method: sudo
+  tasks:
+    - name: Create a Python script from external file
+      ansible.builtin.copy:
+        src: src_files/my_script.py
+        dest: /home/ktbyers/WORK/my_script.py
+        owner: ktbyers
+        group: ktbyers
+        mode: '0755'
