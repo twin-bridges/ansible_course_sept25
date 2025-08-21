@@ -1,0 +1,21 @@
+---
+- name: Test execution behavior (Play1)
+  hosts: servers:local
+  # Wait at the 'play' boundary
+  # strategy: free
+  tasks:
+    - name: Test p1-task1
+      ansible.builtin.ping:
+
+    - name: Test p1-task2
+      ansible.builtin.ping:
+
+- name: Test execution behavior (Play2)
+  hosts: servers:local
+  # strategy: free
+  tasks:
+    - name: Test p2-task1
+      ansible.builtin.ping:
+
+    - name: Test p2-task2
+      ansible.builtin.ping:

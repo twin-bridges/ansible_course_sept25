@@ -1,0 +1,21 @@
+---
+- name: Test execution behavior
+  hosts: servers:local
+  gather_facts: false
+  # strategy: free
+  tasks:
+
+    - name: Introduce a variable delay
+      ansible.builtin.wait_for:
+        port: 22
+        # Delay 1 to 20s (different delays for each host)
+        delay: "{{ range(1, 21) | random }}"
+
+    - name: Test task2
+      ansible.builtin.ping:
+
+    - name: Test task3
+      ansible.builtin.ping:
+
+    - name: Test task4
+      ansible.builtin.ping:
