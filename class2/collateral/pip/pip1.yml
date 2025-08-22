@@ -1,0 +1,57 @@
+---
+- name: Setup server for class example
+  hosts: servers
+  become: true
+  become_method: ansible.builtin.sudo
+  vars:
+    user: candor
+    uid: 1003
+    gid: 1003
+    full_name: Cassian Andor
+    remote_python: "/usr/local/bin/python3.13"
+    virtualenv: "/home/{{ user }}/VENV/test_venv"
+  tasks:
+
+    - name: Ensure group exists
+      ansible.builtin.group:
+        name: "{{ user }}"
+        gid: "{{ gid }}"
+        state: present
+
+    - name: Ensure user exists
+      ansible.builtin.user:
+        name: "{{ user }}"
+        uid: "{{ gid }}"
+        group: "{{ user }}"
+        home: "/home/{{ user }}"
+        shell: /bin/bash
+        comment: "{{ full_name }}"
+        create_home: true
+        state: present
+
+    - name: Ensure directory 'VENV' exists
+      ansible.builtin.file:
+        path: "/home/{{ user }}/VENV/"
+        state: directory
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: "0755"
+
+    - name: Create Python virtual environment and install latest Netmiko
+      ansible.builtin.pip:
+        name: netmiko
+        virtualenv: "{{ virtualenv }}"
+        virtualenv_command: "{{ remote_python }} -m venv"
+        state: present
+
+    - name: Upgrade pip itself
+      ansible.builtin.pip:
+        name: pip
+        version: 25.2
+        virtualenv: "{{ virtualenv }}"
+
+    - name: Change Netmiko Version
+      ansible.builtin.pip:
+        name: netmiko
+        version: 4.5.0
+        virtualenv: "{{ virtualenv }}"
