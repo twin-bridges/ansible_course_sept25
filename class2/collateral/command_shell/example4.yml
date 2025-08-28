@@ -1,0 +1,10 @@
+- name: Testing shell module
+  hosts: servers
+  tasks:
+    - name: Directory listing (with shell)
+      ansible.builtin.shell: ls -l; touch foo.txt
+      register: output
+      changed_when: false
+
+    - ansible.builtin.debug:
+        var: output

@@ -1,0 +1,10 @@
+- name: Testing command module
+  hosts: servers:local
+  tasks:
+    - name: Retrieve hostname
+      ansible.builtin.command: hostname
+      register: output
+      changed_when: false
+
+    - ansible.builtin.debug:
+        msg: "{{ output.stdout }}"

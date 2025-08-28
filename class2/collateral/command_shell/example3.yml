@@ -1,0 +1,10 @@
+- name: Testing shell module
+  hosts: servers
+  tasks:
+    - name: We have a shell (so | grep works)
+      ansible.builtin.shell: ls -l | grep ADMIN
+      register: output
+      changed_when: false
+
+    - ansible.builtin.debug:
+        var: output

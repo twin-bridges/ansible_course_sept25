@@ -1,0 +1,15 @@
+- name: Testing command module
+  hosts: servers
+  tasks:
+    - name: Directory listing
+      ansible.builtin.command: ls -l
+      register: output
+      changed_when: false
+
+    - name: Will fail (no shell, so pipe not allowed)
+      ansible.builtin.command: ls -l | grep gituser
+      register: output
+      changed_when: false
+
+    - ansible.builtin.debug:
+        var: output
