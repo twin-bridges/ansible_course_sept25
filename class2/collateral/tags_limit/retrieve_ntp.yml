@@ -1,0 +1,12 @@
+---
+- name: IOS Example
+  hosts: cisco5
+  gather_facts: False
+  tasks:
+    - cisco.ios.ios_command:
+        commands:
+          - show run | inc ntp
+      register: output
+    
+    - ansible.builtin.debug:
+        var: output
