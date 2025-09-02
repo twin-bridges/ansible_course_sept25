@@ -1,0 +1,17 @@
+---
+- name: IOS Example
+  hosts: cisco
+  gather_facts: False
+  tasks:
+    - cisco.ios.ios_facts:
+
+    - ansible.builtin.debug:
+        var: ansible_net_model
+
+    - name: Executing command
+      cisco.ios.ios_command:
+        commands: show ip int brief
+      register: output
+
+    - ansible.builtin.debug:
+        var: output

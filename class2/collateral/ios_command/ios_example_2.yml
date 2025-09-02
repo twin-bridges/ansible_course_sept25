@@ -1,0 +1,14 @@
+---
+- name: IOS Example
+  hosts: cisco
+  gather_facts: True
+  gather_subset: all
+  tasks:
+    - debug: 
+        msg: "{{ hostvars['cisco1'] }}"
+  
+    - ansible.builtin.debug:
+        msg:
+          - "{{ ansible_net_serialnum }}"
+          - "{{ ansible_net_system }}"
+          - "{{ ansible_net_version }}"      

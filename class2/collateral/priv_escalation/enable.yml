@@ -1,0 +1,12 @@
+---
+# ansible-playbook enable.yml --become-method enable --become -K
+- name: IOS Example
+  hosts: cisco1
+  gather_facts: False
+  tasks:
+    - cisco.ios.ios_command:
+        commands: show run
+      register: output
+
+    - ansible.builtin.debug:
+        var: output
