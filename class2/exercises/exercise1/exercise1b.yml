@@ -1,0 +1,14 @@
+---
+- name: Exercise 1b
+  hosts: nxos
+  gather_facts: False
+  tasks:
+    - name: Gather show version output
+      cisco.nxos.nxos_command:
+        commands:
+          - show version
+          - show ip arp
+      register: show_output
+
+    - ansible.builtin.debug:
+        var: show_output
