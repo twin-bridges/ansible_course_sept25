@@ -1,0 +1,11 @@
+---
+- name: Exercise 2b
+  hosts: juniper
+  gather_facts: False
+  tasks:
+    - junipernetworks.junos.junos_command:
+        commands: show interfaces terse
+      register: interfaces
+
+    - ansible.builtin.debug:
+        msg: "{{ interfaces['stdout_lines'][0][21] }}"

@@ -1,0 +1,14 @@
+---
+- name: Exercise 2c
+  hosts: juniper
+  gather_facts: False
+  tasks:
+    - junipernetworks.junos.junos_command:
+        commands: show interfaces terse
+      register: interfaces
+
+    - ansible.builtin.set_fact:
+        intf_line: "{{ interfaces['stdout_lines'][0][21] }}"
+
+    - ansible.builtin.debug:
+        msg: "Primary IP: {{ intf_line.split()[-1] }}"
