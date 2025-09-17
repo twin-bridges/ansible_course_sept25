@@ -7,8 +7,9 @@
         config:
           - name: Ethernet1/4
             description: 'Testing Ansible configuration'
-            enabled: False
+            enabled: True
         state: merged
+      tags: intf
 
     - name: Configure ports to be switchports
       cisco.nxos.nxos_interfaces:
@@ -16,6 +17,7 @@
           - name: "{{ item }}"
             enabled: True
             mode: layer2
+        state: merged
       loop:
         - Ethernet1/3
         - Ethernet1/4
