@@ -16,4 +16,4 @@
             vlan_id: 30
             state: active
         state: merged
-#        state: replaced
+        # state: replaced
