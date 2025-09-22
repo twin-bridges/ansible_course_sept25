@@ -1,0 +1,24 @@
+---
+- name: IOS Example3
+  hosts: cisco
+  gather_facts: True
+  tasks:
+    - name: name-server for IOS
+      cisco.ios.ios_config:
+        lines:
+          - "ip name-server {{ dns_server1 }}"
+          - "ip name-server {{ dns_server2 }}"
+        save_when: changed
+      when: ansible_facts.net_iostype == "IOS"
+
+    - name: name-server for IOS-XE
+      cisco.ios.ios_config:
+        lines:
+          - "ip name-server {{ dns_server1 }} {{ dns_server2 }}"
+        save_when: changed
+      when: ansible_facts.net_iostype == "IOS-XE"
+
+#    - name: Save configuration when modified
+#      cisco.ios.ios_config:
+#        save_when: modified
+
