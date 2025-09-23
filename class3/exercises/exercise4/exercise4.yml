@@ -1,0 +1,41 @@
+---
+- name: Global configuration
+  hosts: cisco:arista:nxos:juniper
+  gather_facts: True
+  tasks:
+    - name: Global config
+      ansible.builtin.set_fact:
+        config: "{{ lookup('template', 'templates/{{ ansible_network_os }}/global.j2') }}"
+
+    - name: View the generated configuration
+      ansible.builtin.debug:
+        var: config.splitlines()
+
+    - name: Global config (IOS)
+      vars:
+          ansible_connection: network_cli
+      cisco.ios.ios_config:
+        config: "{{ config }}"
+      when: ansible_network_os == 'ios'
+
+    - name: Global config (EOS)
+      vars:
+          ansible_connection: network_cli
+      cisco.ios.ios_config:
+        config: "{{ config }}"
+      when: ansible_network_os == 'eos'
+
+    - name: Global config (NX-OS)
+      vars:
+          ansible_connection: network_cli
+      cisco.ios.ios_config:
+        config: "{{ config }}"
+      when: ansible_network_os == 'nxos'
+
+    - name: Global config (Junos)
+      vars:
+          ansible_connection: network_cli
+      cisco.ios.ios_config:
+        config: "{{ config }}"
+      when: ansible_network_os == 'junos'
+
