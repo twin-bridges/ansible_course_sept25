@@ -1,0 +1,12 @@
+---
+- hosts: local
+  vars:
+    ip_address: 172.16.31.1
+  tasks:
+    - name: Runtime include
+      ansible.builtin.include_tasks: common_tasks3.yml
+      when: 'ip_address == "172.16.31.1"'
+
+#    - name: Import (pre-processed at playbook parsing)
+#      ansible.builtin.import_tasks: common_tasks3.yml
+#      when: 'ip_address == "172.16.31.1"'
