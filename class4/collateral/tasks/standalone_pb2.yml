@@ -23,7 +23,8 @@
 
 - name: Global configuration using includes
   hosts: juniper
-  gather_facts: False
+  # Fact gathering works on the VMXs
+  gather_facts: true
   tasks:
     - name: Include Junos tasks
       ansible.builtin.include_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml"
