@@ -1,0 +1,9 @@
+---
+- name: Vars from file directly into namespace
+  hosts: local
+  tasks:
+    - name: Include vars from file
+      ansible.builtin.include_vars: some_vars.yml
+
+    - ansible.builtin.debug:
+       var: key1

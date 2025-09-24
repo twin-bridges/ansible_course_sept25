@@ -1,0 +1,11 @@
+---
+- name: Load variables from directory of files
+  hosts: local
+  tasks:
+    - name: Recurse directory for variables
+      ansible.builtin.include_vars:
+        dir: test_dir
+        name: my_var
+
+    - ansible.builtin.debug:
+       var: my_var
